@@ -1,0 +1,27 @@
+version: '3'
+
+services:
+  db:
+    image: postgres:12.1-alpine
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "password"
+      POSTGRES_DB: "plu_api_development"
+
+  app:
+    build: 
+      context: .
+      dockerfile: ./Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+
+volumes:
+  db_data: {} 
