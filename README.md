@@ -1,24 +1,7 @@
-# README
+docker-compose build
+docker-compose up
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+//to execute command
+docker exec -it <container_name_or_id> <command_to_run>
+//to open a shell within the container
+docker exec -it <container_name_or_id> sh
