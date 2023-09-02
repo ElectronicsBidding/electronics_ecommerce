@@ -5,8 +5,8 @@ class Product < ApplicationRecord
     belongs_to :buyer, class_name: 'User', foreign_key: 'buyer_id'
     belongs_to :category
 
-    has_many :bidding
-    has_many :watchlist
+    has_many :biddings
+    has_many :watchlists
 
     validates :seller_id, :category_id, presence: true
     validates :name, :starting_price, :description, presence: true

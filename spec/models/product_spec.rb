@@ -15,4 +15,8 @@ RSpec.describe Product, type: :model do
   it {is_expected.to(validate_inclusion_of(:status).in_array(Product::STATUS))}
   it {is_expected.to(validate_presence_of(:location))}
   it {is_expected.to(validate_presence_of(:bidding_end_time))}
+
+  it{is_expected.to(belong_to(:category))}
+  it{is_expected.to(belong_to(:seller).class_name('User').with_foreign_key('seller_id'))}
+  it{is_expected.to(belong_to(:buyer).class_name('User').with_foreign_key('buyer_id'))}
 end
