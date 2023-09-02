@@ -10,7 +10,7 @@ services:
     environment:
       POSTGRES_USER: "postgres"
       POSTGRES_PASSWORD: "password"
-      POSTGRES_DB: "plu_api_development"
+      POSTGRES_DB: "ecommerce_api_development"
 
   app:
     build: 
