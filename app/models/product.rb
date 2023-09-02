@@ -12,4 +12,5 @@ class Product < ApplicationRecord
     validates :name, :starting_price, :description, presence: true
     validates :image, :status, :location, :bidding_end_time, presence: true
     validates :status, inclusion: {in: STATUS}
+    validates :starting_price, numericality:{greater_than: 0}
 end

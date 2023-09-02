@@ -4,4 +4,12 @@ class Bidding < ApplicationRecord
 
     validates :user_id, :product_id, presence: true
     validates :bidding_price, presence: true
+    validate :validate_bidding_price
+
+    private
+    def validate_bidding_price
+        if bidding_price.present? && bidding_price < product.starting_price
+            errors.add(:bidding_price, "must be greater than or equal to the starting price")
+        end
+    end
 end
