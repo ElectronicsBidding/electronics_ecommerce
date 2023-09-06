@@ -1,17 +1,17 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Bidding, type: :model do
-  it 'has to validate factory' do
-    expect(create(:bidding)).to be_valid
-  end
+  attributes = [
+    { user: :belong_to },
+    { product: :belong_to },
+    { bidding_price: :presence },
+    { user_id: :presence },
+    { product_id: :presence },
+  ]
 
-  it {is_expected.to(validate_presence_of(:user_id))}
-  it {is_expected.to(validate_presence_of(:product_id))}
-  it {is_expected.to(validate_presence_of(:bidding_price))}
-  it {is_expected.to(belong_to(:user))}
-  it {is_expected.to(belong_to(:product))}
+  include_examples("model_shared_spec", :bidding, attributes)
 
-  it 'validates bidding_price is greater than or equal to starting_price' do
+  it "validates bidding_price is greater than or equal to starting_price" do
     user = create(:user)
     product = create(:product)
     invalid_bidding_price = product.starting_price - 10.0

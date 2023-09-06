@@ -1,23 +1,24 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Product, type: :model do
-  it 'has to validate factory' do
-    expect(create(:product)).to be_valid
-  end
+  attributes = [
+    { name: :presence },
+    { starting_price: [:presence, { numericality: [[:is_greater_than, 0]] }] },
+    { description: :presence },
+    { image: :presence },
+    { status: :presence },
+    { location: :presence },
+    { bidding_end_time: :presence },
+    { category_id: :presence },
+    { seller_id: :presence },
+    { biddings: :have_many },
+    { watchlists: :have_many },
+    { category: :belong_to },
+    { status: [:presence, { inclusion: [[:in_array, Product::STATUS]] }] },
+  ]
 
-  it {is_expected.to(validate_presence_of(:seller_id))}
-  it {is_expected.to(validate_presence_of(:category_id))}
-  it {is_expected.to(validate_presence_of(:name))}
-  it {is_expected.to(validate_presence_of(:starting_price))}
-  it {is_expected.to(validate_numericality_of(:starting_price).is_greater_than(0))}
-  it {is_expected.to(validate_presence_of(:description))}
-  it {is_expected.to(validate_presence_of(:image))}
-  it {is_expected.to(validate_presence_of(:status))}
-  it {is_expected.to(validate_inclusion_of(:status).in_array(Product::STATUS))}
-  it {is_expected.to(validate_presence_of(:location))}
-  it {is_expected.to(validate_presence_of(:bidding_end_time))}
+  include_examples("model_shared_spec", :product, attributes)
 
-  it{is_expected.to(belong_to(:category))}
-  it{is_expected.to(belong_to(:seller).class_name('User').with_foreign_key('seller_id'))}
-  it{is_expected.to(belong_to(:buyer).class_name('User').with_foreign_key('buyer_id'))}
+  it { is_expected.to(belong_to(:seller).class_name("User").with_foreign_key("seller_id")) }
+  it { is_expected.to(belong_to(:buyer).class_name("User").with_foreign_key("buyer_id")) }
 end
