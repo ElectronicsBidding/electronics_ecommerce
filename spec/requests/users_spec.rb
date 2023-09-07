@@ -2,7 +2,7 @@ require 'rails_helper'
 
 
 RSpec.describe "/users", type: :request do
-  include_examples('request_shared_spec', 'users', 5, [:create])
+  include_examples('request_shared_spec', 'users', 7, [:create])
 
   let(:valid_attributes) do 
     {
