@@ -1,12 +1,14 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Category, type: :model do
-  it 'has a valid factory' do
-    expect(create(:category)).to be_valid
-  end
+  attributes = [
+    { name: :presence },
+    { image: :presence },
+    { products: :have_many },
+  ]
 
-  it {is_expected.to(validate_presence_of(:name))}
+  include_examples("model_shared_spec", :category, attributes)
+
   # it {is_expected.to(validate_uniqueness_of(:name))}
-  it {is_expected.to(validate_presence_of(:image))}
-  it {is_expected.to(have_many(:products))}
+
 end

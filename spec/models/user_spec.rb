@@ -1,19 +1,17 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe User, type: :model do
-  it 'has a valid factory' do
-    expect(create(:user)).to be_valid
-  end
+  attributes = [
+    { full_name: :presence },
+    { password_digest: [:presence, { length: [[:is_at_least, 8]] }] },
+    { phone_number: :presence },
+    { email: :presence },
+    { biddings: :have_many },
+    { watchlists: :have_many },
+  ]
 
-  it {is_expected.to(validate_presence_of(:full_name))}
-  it {is_expected.to(validate_presence_of(:phone_number))}
-  it {is_expected.to(validate_presence_of(:email))}
-  # it {is_expected.to(validate_uniqueness_of(:email))}
-  it {is_expected.to(validate_presence_of(:password_digest))}
-  it {is_expected.to(validate_length_of(:password_digest).is_at_least(8))}
+  include_examples("model_shared_spec", :user, attributes)
 
   # it {is_expected.to(have_many(:products).with_foreign_key('seller_id'))}
-  it {is_expected.to(have_many(:products).with_foreign_key('buyer_id'))}
-  it {is_expected.to(have_many(:biddings))}
-  it {is_expected.to(have_many(:watchlists))}
+  it { is_expected.to(have_many(:products).with_foreign_key("buyer_id")) }
 end

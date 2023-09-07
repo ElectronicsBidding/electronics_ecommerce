@@ -1,13 +1,13 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe Watchlist, type: :model do
-  it 'has to validate factory' do
-    expect(create(:watchlist)).to be_valid
-  end
+  attributes = [
+    { user_id: :presence },
+    { product_id: :presence },
+    { user: :belong_to },
+    { product: :belong_to },
 
-  it {is_expected.to(validate_presence_of(:user_id))}
-  it {is_expected.to(validate_presence_of(:product_id))}
+  ]
 
-  it{is_expected.to(belong_to(:user))}
-  it{is_expected.to(belong_to(:product))}
+  include_examples("model_shared_spec", :watchlist, attributes)
 end
