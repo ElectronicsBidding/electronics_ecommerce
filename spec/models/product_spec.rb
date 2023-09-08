@@ -15,6 +15,7 @@ RSpec.describe Product, type: :model do
     { watchlists: :have_many },
     { category: :belong_to },
     { status: [:presence, { inclusion: [[:in_array, Product::STATUS]] }] },
+    { bid_interval: :presence }
   ]
 
   include_examples("model_shared_spec", :product, attributes)
