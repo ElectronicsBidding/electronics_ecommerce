@@ -10,5 +10,7 @@ FactoryBot.define do
     status {"available"}
     location {Faker::Address.full_address}
     bidding_end_time {Faker::Date.between(from: Date.today, to: 1.week.from_now)}
+    bid_interval {100.0}
+    current_bid {200.0}
   end
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 RSpec.describe "/products", type: :request do
-  include_examples('request_shared_spec', 'products', 11)
+  include_examples('request_shared_spec', 'products', 13)
 
   let(:valid_attributes) do 
     {
@@ -13,7 +13,9 @@ RSpec.describe "/products", type: :request do
       image: Faker::Avatar.image,
       status: "available",
       location: Faker::Address.full_address,
-      bidding_end_time: Faker::Date.between(from: Date.today, to: 1.week.from_now)
+      bidding_end_time: Faker::Date.between(from: Date.today, to: 1.week.from_now),
+      bid_interval: 100.0,
+      current_bid: 200.0
     }
   end
 
@@ -28,7 +30,9 @@ RSpec.describe "/products", type: :request do
       image: Faker::Avatar.image,
       status: "available",
       location: Faker::Address.full_address,
-      bidding_end_time: Faker::Date.between(from: Date.today, to: 1.week.from_now)
+      bidding_end_time: Faker::Date.between(from: Date.today, to: 1.week.from_now),
+      bid_interval: nil,
+      current_bid: 200.0
     }
   end
 
