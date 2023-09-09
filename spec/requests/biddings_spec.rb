@@ -8,7 +8,7 @@ RSpec.describe "/biddings", type: :request do
     {
       user_id: create(:user).id,
       product_id: create(:product).id,
-      bidding_price: 100
+      bidding_price: 300.0
     }
   end
 
@@ -22,7 +22,7 @@ RSpec.describe "/biddings", type: :request do
 
   let(:new_attributes) do 
     {
-      bidding_price: 200
+      bidding_price: 400.0
     }
   end
   
