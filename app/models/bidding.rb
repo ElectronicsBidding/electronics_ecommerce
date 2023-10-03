@@ -1,4 +1,6 @@
 class Bidding < ApplicationRecord
+  after_save :update_product_bid
+
   belongs_to :user
   belongs_to :product
 
@@ -29,5 +31,12 @@ class Bidding < ApplicationRecord
           errors.add(:bidding_price, "must be greater by the specified bid interaval")
         end
     end
+  end
+
+  #update the current leading bidder and current bid(price)
+  def update_product_bid
+    product.current_bid = bidding_price
+    product.buyer_id = user.id
+    product.save!
   end
 end
