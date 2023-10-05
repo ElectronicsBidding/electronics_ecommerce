@@ -29,4 +29,13 @@ RSpec.describe "/users", type: :request do
       full_name: Faker::Name.name
     }
   end
+
+
+  it "signs in users with correct email and password" do
+    user = create(:user, email: "test@gmail.com", password: "123456", password_confirmation: "123456")
+    post "/users/sign_in", params: { email: "test@gmail.com", password: "123456" }
+    expect(response).to have_http_status(:ok)
+    expect(response.content_type).to eq('application/json; charset=utf-8')
+  end
+  
 end
