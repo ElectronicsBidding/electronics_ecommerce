@@ -1,5 +1,11 @@
 class ProductsController < ApplicationController
 include Common
+
+  def filter
+    @products = Product.where(user_id: params[:id])
+    render json: {data: @products, success: true}
+  end
+
   
   private
     def model_params
