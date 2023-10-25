@@ -6,6 +6,12 @@ include Common
     render json: {data: @products, success: true}
   end
 
+  def destroy
+    product = Product.find(params[:id])
+    product.destroy
+    render json: {success: true}
+  end
+
   
   private
     def model_params
