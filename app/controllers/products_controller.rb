@@ -1,5 +1,17 @@
 class ProductsController < ApplicationController
 include Common
+
+  def filter
+    @products = Product.where(seller_id: params[:id])
+    render json: {data: @products, success: true}
+  end
+
+  def destroy
+    product = Product.find(params[:id])
+    product.destroy
+    render json: {success: true}
+  end
+
   
   private
     def model_params
