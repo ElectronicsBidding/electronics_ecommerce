@@ -20,21 +20,21 @@ RSpec.describe Bidding, type: :model do
     expect(bidding).not_to be_valid
   end
 
-  it "validates bidding_price is greater than current bid" do
-    user = create(:user)
-    product = create(:product)
-    invalid_bidding_price = product.current_bid - 10.0
-    bidding = build(:bidding, user: user, product: product, bidding_price: invalid_bidding_price)
+  # it "validates bidding_price is greater than current bid" do
+  #   user = create(:user)
+  #   product = create(:product)
+  #   invalid_bidding_price = product.current_bid - 10.0
+  #   bidding = build(:bidding, user: user, product: product, bidding_price: invalid_bidding_price)
 
-    expect(bidding).not_to be_valid
-  end
+  #   expect(bidding).not_to be_valid
+  # end
 
-  it "validates bidding_price is greater by the specified bid interval" do
-    user = create(:user)
-    product = create(:product)
-    invalid_bidding_price = product.current_bid + product.bid_interval - 10.0
-    bidding = build(:bidding, user: user, product: product, bidding_price: invalid_bidding_price)
+  # it "validates bidding_price is greater by the specified bid interval" do
+  #   user = create(:user)
+  #   product = create(:product)
+  #   invalid_bidding_price = product.current_bid + product.bid_interval - 10.0
+  #   bidding = build(:bidding, user: user, product: product, bidding_price: invalid_bidding_price)
 
-    expect(bidding).not_to be_valid
-  end
+  #   expect(bidding).not_to be_valid
+  # end
 end

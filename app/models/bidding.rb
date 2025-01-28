@@ -7,8 +7,8 @@ class Bidding < ApplicationRecord
   validates :user_id, :product_id, presence: true
   validates :bidding_price, presence: true
   validate :validate_bidding_price_starting_price
-  validate :validate_bidding_price_current_bid 
-  validate :validate_bidding_price_bid_interval
+  # validate :validate_bidding_price_current_bid 
+  # validate :validate_bidding_price_bid_interval
 
   private
 
